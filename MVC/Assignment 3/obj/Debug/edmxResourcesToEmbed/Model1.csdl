@@ -1,0 +1,559 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NotesmarketPlaceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Country">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CountryCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <NavigationProperty Name="SellerNotes" Relationship="NotesmarketPlaceModel.FK_SellerNotes_Countries" FromRole="Country" ToRole="SellerNote" />
+  </EntityType>
+  <EntityType Name="Download">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NoteID" Type="Int32" Nullable="false" />
+    <Property Name="Seller" Type="Int32" Nullable="false" />
+    <Property Name="Downloader" Type="Int32" Nullable="false" />
+    <Property Name="IsSellerHasAllowedDownload" Type="Boolean" Nullable="false" />
+    <Property Name="AttachementPath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsAttachementDownload" Type="Boolean" Nullable="false" />
+    <Property Name="AttaachementDownloadID" Type="DateTime" Precision="3" />
+    <Property Name="IsPaid" Type="Boolean" Nullable="false" />
+    <Property Name="PurchasedPrice" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="NoteTitle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="NoteCategory" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <NavigationProperty Name="SellerNote" Relationship="NotesmarketPlaceModel.FK_Downloads_SellerNotes" FromRole="Download" ToRole="SellerNote" />
+    <NavigationProperty Name="User" Relationship="NotesmarketPlaceModel.FK_Downloads_User" FromRole="Download" ToRole="User" />
+    <NavigationProperty Name="User1" Relationship="NotesmarketPlaceModel.FK_Downloads_User1" FromRole="Download" ToRole="User" />
+    <NavigationProperty Name="SellerNotesReportedIssues" Relationship="NotesmarketPlaceModel.FK_SellerNotesReportedIssues_Downloads" FromRole="Download" ToRole="SellerNotesReportedIssue" />
+    <NavigationProperty Name="SellerNotesReviews" Relationship="NotesmarketPlaceModel.FK_SellerNotesReviews_Downloads" FromRole="Download" ToRole="SellerNotesReview" />
+  </EntityType>
+  <EntityType Name="NoteCategory">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <NavigationProperty Name="SellerNotes" Relationship="NotesmarketPlaceModel.FK_SellerNotes_NoteCategories" FromRole="NoteCategory" ToRole="SellerNote" />
+  </EntityType>
+  <EntityType Name="NoteType">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <NavigationProperty Name="SellerNotes" Relationship="NotesmarketPlaceModel.FK_SellerNotes_NoteTypes" FromRole="NoteType" ToRole="SellerNote" />
+  </EntityType>
+  <EntityType Name="ReferenceData">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Value" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DataValue" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="RefCategory" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <NavigationProperty Name="SellerNotes" Relationship="NotesmarketPlaceModel.FK_SellerNotes_ReferenceData" FromRole="ReferenceData" ToRole="SellerNote" />
+    <NavigationProperty Name="UserProfiles" Relationship="NotesmarketPlaceModel.FK_UserProfile_ReferenceData" FromRole="ReferenceData" ToRole="UserProfile" />
+  </EntityType>
+  <EntityType Name="SellerNote">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SellerID" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="ActionedBy" Type="Int32" />
+    <Property Name="AdminRemarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PublishedDate" Type="DateTime" Precision="3" />
+    <Property Name="Title" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Category" Type="Int32" Nullable="false" />
+    <Property Name="DisplayPicture" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="NoteType" Type="Int32" />
+    <Property Name="NumberOfPages" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="UniversityName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="Int32" />
+    <Property Name="Course" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CourseCode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Professor" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IsPaid" Type="Boolean" Nullable="false" />
+    <Property Name="SellingPrice" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="NotesPreview" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <NavigationProperty Name="Country1" Relationship="NotesmarketPlaceModel.FK_SellerNotes_Countries" FromRole="SellerNote" ToRole="Country" />
+    <NavigationProperty Name="Downloads" Relationship="NotesmarketPlaceModel.FK_Downloads_SellerNotes" FromRole="SellerNote" ToRole="Download" />
+    <NavigationProperty Name="NoteCategory" Relationship="NotesmarketPlaceModel.FK_SellerNotes_NoteCategories" FromRole="SellerNote" ToRole="NoteCategory" />
+    <NavigationProperty Name="NoteType1" Relationship="NotesmarketPlaceModel.FK_SellerNotes_NoteTypes" FromRole="SellerNote" ToRole="NoteType" />
+    <NavigationProperty Name="ReferenceData" Relationship="NotesmarketPlaceModel.FK_SellerNotes_ReferenceData" FromRole="SellerNote" ToRole="ReferenceData" />
+    <NavigationProperty Name="User" Relationship="NotesmarketPlaceModel.FK_SellerNotes_User" FromRole="SellerNote" ToRole="User" />
+    <NavigationProperty Name="SellerNotesAttachments" Relationship="NotesmarketPlaceModel.FK_SellerNotesAttachments_SellerNotes" FromRole="SellerNote" ToRole="SellerNotesAttachment" />
+    <NavigationProperty Name="SellerNotesReportedIssues" Relationship="NotesmarketPlaceModel.FK_SellerNotesReportedIssues_SellerNotes" FromRole="SellerNote" ToRole="SellerNotesReportedIssue" />
+    <NavigationProperty Name="SellerNotesReviews" Relationship="NotesmarketPlaceModel.FK_SellerNotesReviews_SellerNotes" FromRole="SellerNote" ToRole="SellerNotesReview" />
+  </EntityType>
+  <EntityType Name="SellerNotesAttachment">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NoteID" Type="Int32" Nullable="false" />
+    <Property Name="FileName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FilePath" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <NavigationProperty Name="SellerNote" Relationship="NotesmarketPlaceModel.FK_SellerNotesAttachments_SellerNotes" FromRole="SellerNotesAttachment" ToRole="SellerNote" />
+  </EntityType>
+  <EntityType Name="SellerNotesReportedIssue">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NoteID" Type="Int32" Nullable="false" />
+    <Property Name="ReportedByID" Type="Int32" Nullable="false" />
+    <Property Name="AgainstDownloadID" Type="Int32" Nullable="false" />
+    <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <NavigationProperty Name="Download" Relationship="NotesmarketPlaceModel.FK_SellerNotesReportedIssues_Downloads" FromRole="SellerNotesReportedIssue" ToRole="Download" />
+    <NavigationProperty Name="SellerNote" Relationship="NotesmarketPlaceModel.FK_SellerNotesReportedIssues_SellerNotes" FromRole="SellerNotesReportedIssue" ToRole="SellerNote" />
+    <NavigationProperty Name="User" Relationship="NotesmarketPlaceModel.FK_SellerNotesReportedIssues_User" FromRole="SellerNotesReportedIssue" ToRole="User" />
+  </EntityType>
+  <EntityType Name="SellerNotesReview">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NoteID" Type="Int32" Nullable="false" />
+    <Property Name="ReviewedByID" Type="Int32" Nullable="false" />
+    <Property Name="AgainstDownloadsID" Type="Int32" Nullable="false" />
+    <Property Name="Ratings" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="Comments" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <NavigationProperty Name="Download" Relationship="NotesmarketPlaceModel.FK_SellerNotesReviews_Downloads" FromRole="SellerNotesReview" ToRole="Download" />
+    <NavigationProperty Name="SellerNote" Relationship="NotesmarketPlaceModel.FK_SellerNotesReviews_SellerNotes" FromRole="SellerNotesReview" ToRole="SellerNote" />
+    <NavigationProperty Name="User" Relationship="NotesmarketPlaceModel.FK_SellerNotesReviews_User" FromRole="SellerNotesReview" ToRole="User" />
+  </EntityType>
+  <EntityType Name="SystemConfiguration">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Key" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="CreatedBy" Type="Int32" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleID" Type="Int32" Nullable="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EmailID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsEmailVerified" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Downloads" Relationship="NotesmarketPlaceModel.FK_Downloads_User" FromRole="User" ToRole="Download" />
+    <NavigationProperty Name="Downloads1" Relationship="NotesmarketPlaceModel.FK_Downloads_User1" FromRole="User" ToRole="Download" />
+    <NavigationProperty Name="SellerNotes" Relationship="NotesmarketPlaceModel.FK_SellerNotes_User" FromRole="User" ToRole="SellerNote" />
+    <NavigationProperty Name="SellerNotesReportedIssues" Relationship="NotesmarketPlaceModel.FK_SellerNotesReportedIssues_User" FromRole="User" ToRole="SellerNotesReportedIssue" />
+    <NavigationProperty Name="SellerNotesReviews" Relationship="NotesmarketPlaceModel.FK_SellerNotesReviews_User" FromRole="User" ToRole="SellerNotesReview" />
+    <NavigationProperty Name="UserRole" Relationship="NotesmarketPlaceModel.FK_User_UserRole" FromRole="User" ToRole="UserRole" />
+    <NavigationProperty Name="UserProfiles" Relationship="NotesmarketPlaceModel.FK_UserProfile_User" FromRole="User" ToRole="UserProfile" />
+  </EntityType>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="DOB" Type="DateTime" Precision="3" />
+    <Property Name="Gender" Type="Int32" />
+    <Property Name="SecondaryEmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PhonenumberCountryCode" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="PhoneNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ProfilePicture" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="AddressLine1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="AddressLine2" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="University" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="College" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="ReferenceData" Relationship="NotesmarketPlaceModel.FK_UserProfile_ReferenceData" FromRole="UserProfile" ToRole="ReferenceData" />
+    <NavigationProperty Name="User" Relationship="NotesmarketPlaceModel.FK_UserProfile_User" FromRole="UserProfile" ToRole="User" />
+  </EntityType>
+  <EntityType Name="UserRole">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Discription" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedDate" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="Int32" />
+    <Property Name="CreatedBy" Type="Int32" />
+    <NavigationProperty Name="Users" Relationship="NotesmarketPlaceModel.FK_User_UserRole" FromRole="UserRole" ToRole="User" />
+  </EntityType>
+  <EntityContainer Name="NotesmarketPlaceEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Countries" EntityType="Self.Country" />
+    <EntitySet Name="Downloads" EntityType="Self.Download" />
+    <EntitySet Name="NoteCategories" EntityType="Self.NoteCategory" />
+    <EntitySet Name="NoteTypes" EntityType="Self.NoteType" />
+    <EntitySet Name="ReferenceDatas" EntityType="Self.ReferenceData" />
+    <EntitySet Name="SellerNotes" EntityType="Self.SellerNote" />
+    <EntitySet Name="SellerNotesAttachments" EntityType="Self.SellerNotesAttachment" />
+    <EntitySet Name="SellerNotesReportedIssues" EntityType="Self.SellerNotesReportedIssue" />
+    <EntitySet Name="SellerNotesReviews" EntityType="Self.SellerNotesReview" />
+    <EntitySet Name="SystemConfigurations" EntityType="Self.SystemConfiguration" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="UserProfiles" EntityType="Self.UserProfile" />
+    <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
+    <AssociationSet Name="FK_SellerNotes_Countries" Association="NotesmarketPlaceModel.FK_SellerNotes_Countries">
+      <End Role="Country" EntitySet="Countries" />
+      <End Role="SellerNote" EntitySet="SellerNotes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Downloads_SellerNotes" Association="NotesmarketPlaceModel.FK_Downloads_SellerNotes">
+      <End Role="SellerNote" EntitySet="SellerNotes" />
+      <End Role="Download" EntitySet="Downloads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Downloads_User" Association="NotesmarketPlaceModel.FK_Downloads_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Download" EntitySet="Downloads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Downloads_User1" Association="NotesmarketPlaceModel.FK_Downloads_User1">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Download" EntitySet="Downloads" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SellerNotesReportedIssues_Downloads" Association="NotesmarketPlaceModel.FK_SellerNotesReportedIssues_Downloads">
+      <End Role="Download" EntitySet="Downloads" />
+      <End Role="SellerNotesReportedIssue" EntitySet="SellerNotesReportedIssues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SellerNotesReviews_Downloads" Association="NotesmarketPlaceModel.FK_SellerNotesReviews_Downloads">
+      <End Role="Download" EntitySet="Downloads" />
+      <End Role="SellerNotesReview" EntitySet="SellerNotesReviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SellerNotes_NoteCategories" Association="NotesmarketPlaceModel.FK_SellerNotes_NoteCategories">
+      <End Role="NoteCategory" EntitySet="NoteCategories" />
+      <End Role="SellerNote" EntitySet="SellerNotes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SellerNotes_NoteTypes" Association="NotesmarketPlaceModel.FK_SellerNotes_NoteTypes">
+      <End Role="NoteType" EntitySet="NoteTypes" />
+      <End Role="SellerNote" EntitySet="SellerNotes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SellerNotes_ReferenceData" Association="NotesmarketPlaceModel.FK_SellerNotes_ReferenceData">
+      <End Role="ReferenceData" EntitySet="ReferenceDatas" />
+      <End Role="SellerNote" EntitySet="SellerNotes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserProfile_ReferenceData" Association="NotesmarketPlaceModel.FK_UserProfile_ReferenceData">
+      <End Role="ReferenceData" EntitySet="ReferenceDatas" />
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SellerNotes_User" Association="NotesmarketPlaceModel.FK_SellerNotes_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="SellerNote" EntitySet="SellerNotes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SellerNotesAttachments_SellerNotes" Association="NotesmarketPlaceModel.FK_SellerNotesAttachments_SellerNotes">
+      <End Role="SellerNote" EntitySet="SellerNotes" />
+      <End Role="SellerNotesAttachment" EntitySet="SellerNotesAttachments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SellerNotesReportedIssues_SellerNotes" Association="NotesmarketPlaceModel.FK_SellerNotesReportedIssues_SellerNotes">
+      <End Role="SellerNote" EntitySet="SellerNotes" />
+      <End Role="SellerNotesReportedIssue" EntitySet="SellerNotesReportedIssues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SellerNotesReviews_SellerNotes" Association="NotesmarketPlaceModel.FK_SellerNotesReviews_SellerNotes">
+      <End Role="SellerNote" EntitySet="SellerNotes" />
+      <End Role="SellerNotesReview" EntitySet="SellerNotesReviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SellerNotesReportedIssues_User" Association="NotesmarketPlaceModel.FK_SellerNotesReportedIssues_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="SellerNotesReportedIssue" EntitySet="SellerNotesReportedIssues" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SellerNotesReviews_User" Association="NotesmarketPlaceModel.FK_SellerNotesReviews_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="SellerNotesReview" EntitySet="SellerNotesReviews" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_UserRole" Association="NotesmarketPlaceModel.FK_User_UserRole">
+      <End Role="UserRole" EntitySet="UserRoles" />
+      <End Role="User" EntitySet="Users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_UserProfile_User" Association="NotesmarketPlaceModel.FK_UserProfile_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+    </AssociationSet>
+  </EntityContainer>
+  <Association Name="FK_SellerNotes_Countries">
+    <End Type="NotesmarketPlaceModel.Country" Role="Country" Multiplicity="0..1" />
+    <End Type="NotesmarketPlaceModel.SellerNote" Role="SellerNote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Country">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SellerNote">
+        <PropertyRef Name="Country" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Downloads_SellerNotes">
+    <End Type="NotesmarketPlaceModel.SellerNote" Role="SellerNote" Multiplicity="1" />
+    <End Type="NotesmarketPlaceModel.Download" Role="Download" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SellerNote">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Download">
+        <PropertyRef Name="NoteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Downloads_User">
+    <End Type="NotesmarketPlaceModel.User" Role="User" Multiplicity="1" />
+    <End Type="NotesmarketPlaceModel.Download" Role="Download" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Download">
+        <PropertyRef Name="Seller" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Downloads_User1">
+    <End Type="NotesmarketPlaceModel.User" Role="User" Multiplicity="1" />
+    <End Type="NotesmarketPlaceModel.Download" Role="Download" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="Download">
+        <PropertyRef Name="Downloader" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SellerNotesReportedIssues_Downloads">
+    <End Type="NotesmarketPlaceModel.Download" Role="Download" Multiplicity="1" />
+    <End Type="NotesmarketPlaceModel.SellerNotesReportedIssue" Role="SellerNotesReportedIssue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Download">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SellerNotesReportedIssue">
+        <PropertyRef Name="AgainstDownloadID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SellerNotesReviews_Downloads">
+    <End Type="NotesmarketPlaceModel.Download" Role="Download" Multiplicity="1" />
+    <End Type="NotesmarketPlaceModel.SellerNotesReview" Role="SellerNotesReview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Download">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SellerNotesReview">
+        <PropertyRef Name="AgainstDownloadsID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SellerNotes_NoteCategories">
+    <End Type="NotesmarketPlaceModel.NoteCategory" Role="NoteCategory" Multiplicity="1" />
+    <End Type="NotesmarketPlaceModel.SellerNote" Role="SellerNote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NoteCategory">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SellerNote">
+        <PropertyRef Name="Category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SellerNotes_NoteTypes">
+    <End Type="NotesmarketPlaceModel.NoteType" Role="NoteType" Multiplicity="0..1" />
+    <End Type="NotesmarketPlaceModel.SellerNote" Role="SellerNote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NoteType">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SellerNote">
+        <PropertyRef Name="NoteType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SellerNotes_ReferenceData">
+    <End Type="NotesmarketPlaceModel.ReferenceData" Role="ReferenceData" Multiplicity="1" />
+    <End Type="NotesmarketPlaceModel.SellerNote" Role="SellerNote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReferenceData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SellerNote">
+        <PropertyRef Name="Status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserProfile_ReferenceData">
+    <End Type="NotesmarketPlaceModel.ReferenceData" Role="ReferenceData" Multiplicity="0..1" />
+    <End Type="NotesmarketPlaceModel.UserProfile" Role="UserProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ReferenceData">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="UserProfile">
+        <PropertyRef Name="Gender" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SellerNotes_User">
+    <End Type="NotesmarketPlaceModel.User" Role="User" Multiplicity="1" />
+    <End Type="NotesmarketPlaceModel.SellerNote" Role="SellerNote" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="SellerNote">
+        <PropertyRef Name="SellerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SellerNotesAttachments_SellerNotes">
+    <End Type="NotesmarketPlaceModel.SellerNote" Role="SellerNote" Multiplicity="1" />
+    <End Type="NotesmarketPlaceModel.SellerNotesAttachment" Role="SellerNotesAttachment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SellerNote">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SellerNotesAttachment">
+        <PropertyRef Name="NoteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SellerNotesReportedIssues_SellerNotes">
+    <End Type="NotesmarketPlaceModel.SellerNote" Role="SellerNote" Multiplicity="1" />
+    <End Type="NotesmarketPlaceModel.SellerNotesReportedIssue" Role="SellerNotesReportedIssue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SellerNote">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SellerNotesReportedIssue">
+        <PropertyRef Name="NoteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SellerNotesReviews_SellerNotes">
+    <End Type="NotesmarketPlaceModel.SellerNote" Role="SellerNote" Multiplicity="1" />
+    <End Type="NotesmarketPlaceModel.SellerNotesReview" Role="SellerNotesReview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SellerNote">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="SellerNotesReview">
+        <PropertyRef Name="NoteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SellerNotesReportedIssues_User">
+    <End Type="NotesmarketPlaceModel.User" Role="User" Multiplicity="1" />
+    <End Type="NotesmarketPlaceModel.SellerNotesReportedIssue" Role="SellerNotesReportedIssue" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="SellerNotesReportedIssue">
+        <PropertyRef Name="ReportedByID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SellerNotesReviews_User">
+    <End Type="NotesmarketPlaceModel.User" Role="User" Multiplicity="1" />
+    <End Type="NotesmarketPlaceModel.SellerNotesReview" Role="SellerNotesReview" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="SellerNotesReview">
+        <PropertyRef Name="ReviewedByID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_UserRole">
+    <End Type="NotesmarketPlaceModel.UserRole" Role="UserRole" Multiplicity="1" />
+    <End Type="NotesmarketPlaceModel.User" Role="User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserRole">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_UserProfile_User">
+    <End Type="NotesmarketPlaceModel.User" Role="User" Multiplicity="1" />
+    <End Type="NotesmarketPlaceModel.UserProfile" Role="UserProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="UserProfile">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
